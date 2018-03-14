@@ -4,7 +4,7 @@ import scipy.integrate as integr
 a = 0  # Start of integration-interval, in both potential and Fourier coefficients
 b = 1  # End of integration-interval, in both potential and Fourier coefficients
 tol = 10 ** (-6)
-X_es = 50
+X_es = 1001
 x_list = np.linspace(a, b, X_es)
 
 
@@ -54,40 +54,44 @@ def total_potential(x, y, V0, N):
     return z
 
 
-def total_potential1(x_list, y_list, V0, N):
+def total_potential_2D(x_list, y_list, V0, N):
     z = np.zeros((X_es, X_es))
     for n in range(1, N):
         z += potential_n(n, x_list, y_list, V0)
     return z
 
 
-def plot_boundary():
-    error_list=np.array([])
-    N_list=np.array([])
-    for N in range(1, 100):
+def get_errors(N_max):
+    error_list_a = np.array([])
+    error_list_b = np.array([])
+    error_list_c = np.array([])
+    error_list_d = np.array([])
+    N_list = np.array([])
+    for N in range(1, N_max):
         x_list = np.linspace(0, 1, X_es)  # x-values at which to evaluate the potential
-        y_list = np.linspace(0, 1, X_es)  # y-values at which to evaluate the potential
-        zero_list = np.zeros_like(y_list)
-        one_list = np.ones_like(y_list)
-        V0 = V0_choices('c')
-        #Vx0 = total_potential(zero_list, y_list, V0, N)  # x=0, y
-        #Vy0 = total_potential(x_list, zero_list, V0, N)  # x, y=0
-        #Vx1 = total_potential(one_list, y_list, V0, N)  # x=1, y
-        Vy1 = total_potential(x_list, np.ones_like(x_list), V0, N)  # x, y=1
-        #These are alle zero
-        #error_x0 = np.linalg.norm(zero_list - Vx0, np.Inf)
-        #error_y0 = np.linalg.norm(zero_list - Vy0, np.Inf)
-        #error_x1 = np.linalg.norm(zero_list - Vx1, np.Inf)
+        V0 = np.array([V0_choices('a'), V0_choices('b'), V0_choices('c'), V0_choices('d')])
+        V_a = total_potential(x_list, np.ones_like(x_list), V0[0], N)  # x, y=1
+        V_b = total_potential(x_list, np.ones_like(x_list), V0[1], N)  # x, y=1
+        V_c = total_potential(x_list, np.ones_like(x_list), V0[2], N)  # x, y=1
+        V_d = total_potential(x_list, np.ones_like(x_list), V0[3], N)  # x, y=1
 
-        error_y1 = np.linalg.norm(V0 - Vy1, np.Inf)/np.linalg.norm(V0, np.Inf)
-        print('errors: ', error_y1)
-        error_list = np.append(error_list, error_y1)
+        error_a = np.linalg.norm(V0[0] - V_a, np.Inf) / np.linalg.norm(V0[0], np.Inf)
+        error_b = np.linalg.norm(V0[1] - V_b, np.Inf) / np.linalg.norm(V0[1], np.Inf)
+        error_c = np.linalg.norm(V0[2] - V_c, np.Inf) / np.linalg.norm(V0[2], np.Inf)
+        error_d = np.linalg.norm(V0[3] - V_d, np.Inf) / np.linalg.norm(V0[3], np.Inf)
+
+        error_list_a = np.append(error_list_a, error_a)
+        error_list_b = np.append(error_list_b, error_b)
+        error_list_c = np.append(error_list_c, error_c)
+        error_list_d = np.append(error_list_d, error_d)
+
         N_list = np.append(N_list, N)
-    return N_list, error_list
+    return N_list, error_list_a, error_list_b, error_list_c, error_list_d
 
 
 def field(V_num):
     return np.gradient(V_num)
+
 
 '''
     def boundary_potential(x, y, V0, N):
