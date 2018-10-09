@@ -15,7 +15,7 @@ if __name__ == '__main__':
         2: 'Boundaries 1-3',
         3: 'Error',
         4: 'Electric field'
-    }[1]
+    }[-1]
     if MasterFlag == 'Testspace':
         print('Welcome to testspace')
         from test import *
@@ -77,10 +77,10 @@ if __name__ == '__main__':
         y_list = np.linspace(0, 1, fun.X_es)  # y-values at which to evaluate the potential
         xx, yy = np.meshgrid(x_list, y_list)
         V0 = np.array([fun.V0_choices('a'), fun.V0_choices('b'), fun.V0_choices('c'), fun.V0_choices('d')])  # Potential choices: a, b, c, d
-        Z_a = fun.total_potential_2D(xx, yy, V0[0], N)  # Calculate potential for whole area
-        Z_b = fun.total_potential_2D(xx, yy, V0[1], N)  # Calculate potential for whole area
-        Z_c = fun.total_potential_2D(xx, yy, V0[2], N)  # Calculate potential for whole area
-        Z_d = fun.total_potential_2D(xx, yy, V0[3], N)  # Calculate potential for whole area
+        Z_a = fun.total_potential(xx, yy, V0[0], N, two_dim=True)  # Calculate potential for whole area
+        Z_b = fun.total_potential(xx, yy, V0[1], N, two_dim=True)  # Calculate potential for whole area
+        Z_c = fun.total_potential(xx, yy, V0[2], N, two_dim=True)  # Calculate potential for whole area
+        Z_d = fun.total_potential(xx, yy, V0[3], N, two_dim=True)  # Calculate potential for whole area
         field_a = fun.field(Z_a)
         field_b = fun.field(Z_b)
         field_c = fun.field(Z_c)

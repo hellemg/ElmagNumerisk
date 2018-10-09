@@ -2,6 +2,27 @@ from datetime import datetime
 
 import matplotlib.pyplot as plt
 
+def plot_array(x, y):
+    plt.plot(x, y)
+    plt.show()
+
+
+def contour_plot_simple(X, Y, Z):
+    plt.contourf(X, Y, Z)
+    plt.xlabel(r'$\varepsilon$')
+    plt.ylabel(r'$\delta$')
+    plt.tick_params(labelsize=5)
+    plt.show()
+
+
+def plot_electricField_simple(X, Y, E_x, E_y):
+    plt.streamplot(X, Y, E_x, E_y)
+    plt.xlabel(r'$\varepsilon$')
+    plt.ylabel(r'$\delta$')
+    plt.tick_params(labelsize=5)
+    plt.title(r'$E(\varepsilon, \delta)$ from $V_0(\varepsilon)=V_{0,a}(\varepsilon)$', fontsize=10)
+    plt.show()
+
 def contour_plot(X, Y, Z_a, Z_b, Z_c, Z_d):
     plt.suptitle(r'Relative potentials $V(\varepsilon, \delta)/V_c$', fontsize=20)
 
