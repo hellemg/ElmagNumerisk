@@ -18,7 +18,7 @@ if __name__ == '__main__':
     if MasterFlag == 'Testspace':
         print('Welcome to testspace')
     elif MasterFlag == 'Boundary 4':
-        N = 200  # Number of Fourier HVA FAAN ER LEDD PÅ ENGELSK
+        N = 200  # Number of Fourier terms to approximate for
         y_list = np.linspace(0, 1, fun.X_es)  # y-values at which to evaluate the potential
         x_list = np.linspace(0, 1, fun.X_es)  # x-values at which to evaluate the potential
         one_list = np.ones_like(y_list)
@@ -33,7 +33,7 @@ if __name__ == '__main__':
         pl.plot_boundary4(x_list, V_a, V_b, V_c, V_d, V0_a, V0_b, V0_c, V0_d)
 
     elif MasterFlag == 'Plot contour V':
-        N = 200  # Number of Fourier HVA FAAN ER LEDD PÅ ENGELSK
+        N = 200  # Number of Fourier terms to approximate for
         x_list = np.linspace(0, 1, fun.X_es)  # x-values at which to evaluate the potential
         y_list = np.linspace(0, 1, fun.X_es)  # y-values at which to evaluate the potential
         xx, yy = np.meshgrid(x_list, y_list)  # mesh-smesh
@@ -45,7 +45,7 @@ if __name__ == '__main__':
         pl.contour_plot(xx, yy, Z_a, Z_b, Z_c, Z_d)  # Plot the potential for whole area
 
     elif MasterFlag == 'Boundaries 1-3':
-        N = 200  # Number of Fourier HVA FAAN ER LEDD PÅ ENGELSK
+        N = 200  # Number of Fourier terms to approximate for
         y_list = np.linspace(0, 1, fun.X_es)  # y-values at which to evaluate the potential
         x_list = np.linspace(0, 1, fun.X_es)  # x-values at which to evaluate the potential
         zero_list = np.zeros_like(y_list)
