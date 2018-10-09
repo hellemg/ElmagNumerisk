@@ -1,6 +1,7 @@
 import functions as fun
 import numpy as np
 import matplotlib.pyplot as plt
+import unittest
 
 import plots as pl
 
@@ -14,9 +15,13 @@ if __name__ == '__main__':
         2: 'Boundaries 1-3',
         3: 'Error',
         4: 'Electric field'
-    }[3]
+    }[1]
     if MasterFlag == 'Testspace':
         print('Welcome to testspace')
+        from test import *
+
+        unittest.main()
+
     elif MasterFlag == 'Boundary 4':
         N = 200  # Number of Fourier terms to approximate for
         y_list = np.linspace(0, 1, fun.X_es)  # y-values at which to evaluate the potential
@@ -38,10 +43,10 @@ if __name__ == '__main__':
         y_list = np.linspace(0, 1, fun.X_es)  # y-values at which to evaluate the potential
         xx, yy = np.meshgrid(x_list, y_list)  # mesh-smesh
         V0 = np.array([fun.V0_choices('a'), fun.V0_choices('b'), fun.V0_choices('c'), fun.V0_choices('d')])  # Potential choices: a, b, c, d
-        Z_a = fun.total_potential_2D(xx, yy, V0[0], N)  # Calculate potential for whole area
-        Z_b = fun.total_potential_2D(xx, yy, V0[1], N)  # Calculate potential for whole area
-        Z_c = fun.total_potential_2D(xx, yy, V0[2], N)  # Calculate potential for whole area
-        Z_d = fun.total_potential_2D(xx, yy, V0[3], N)  # Calculate potential for whole area
+        Z_a = fun.total_potential(xx, yy, V0[0], N, True)  # Calculate potential for whole area
+        Z_b = fun.total_potential(xx, yy, V0[1], N, True)  # Calculate potential for whole area
+        Z_c = fun.total_potential(xx, yy, V0[2], N, True)  # Calculate potential for whole area
+        Z_d = fun.total_potential(xx, yy, V0[3], N, True)  # Calculate potential for whole area
         pl.contour_plot(xx, yy, Z_a, Z_b, Z_c, Z_d)  # Plot the potential for whole area
 
     elif MasterFlag == 'Boundaries 1-3':

@@ -47,17 +47,13 @@ def potential_n(n, x, y, V0):
     return coeff_n(n, V0) * np.sinh(n * np.pi * y) * np.sin(n * np.pi * x)
 
 
-def total_potential(x, y, V0, N):
-    z = np.zeros(X_es)
+def total_potential(x, y, V0, N, two_dim = False):
+    if not two_dim:
+        z = np.zeros(X_es)
+    else:
+        z = np.zeros((X_es, X_es))
     for n in range(1, N):
         z += potential_n(n, x, y, V0)
-    return z
-
-
-def total_potential_2D(x_list, y_list, V0, N):
-    z = np.zeros((X_es, X_es))
-    for n in range(1, N):
-        z += potential_n(n, x_list, y_list, V0)
     return z
 
 
