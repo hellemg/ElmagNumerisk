@@ -35,12 +35,12 @@ class Image:
         self.extracted_x = df.x_list.values / x_dim
         self.extracted_y = df.y_list.values / y_dim
 
-    def extract_function(self):
+    def interpolate_coordinates(self):
         #print("x min and max:", min(x), max(x))
         #print("y min and max: ", min(y), max(y))
         #Reduce number of points to interpolate to ensure smoother function
-        #self.extracted_x = self.extracted_x[::int(len(self.extracted_x)/9)]
-        #self.extracted_y = self.extracted_y[::int(len(self.extracted_y)/9)]
+        self.extracted_x = self.extracted_x[::3]
+        self.extracted_y = self.extracted_y[::3]
         #print("length of x and y are now:", len(x), len(y))
         #Create interpolation object
         f = interp1d(self.extracted_x, self.extracted_y, kind='linear', assume_sorted=True, bounds_error=False, fill_value='extrapolate')

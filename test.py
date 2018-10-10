@@ -29,7 +29,7 @@ class TestElectricFields(unittest.TestCase):
             }.get(choice, 1)  # 1 is default if x not found
         new_image = Image()
         new_image.extract_coordinates()
-        V0 = new_image.extract_function()
+        V0 = new_image.interpolate_coordinates()
         V = Potential(V0)
         x = V.x_array.copy()
         y = V.func.copy()
