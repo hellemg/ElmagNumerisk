@@ -1,3 +1,5 @@
+*.png
+*.pdf
 .idea/
 *.iml
 # Byte-compiled / optimized / DLL files
