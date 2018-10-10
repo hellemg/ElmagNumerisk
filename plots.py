@@ -4,8 +4,9 @@ import matplotlib.pyplot as plt
 
 def plot_array(x, y):
     plt.plot(x, y)
+    plt.ylim(0, 1)
+    plt.xlim(0,1)
     plt.show()
-
 
 def contour_plot_simple(X, Y, Z):
     plt.contourf(X, Y, Z)
@@ -14,14 +15,26 @@ def contour_plot_simple(X, Y, Z):
     plt.tick_params(labelsize=5)
     plt.show()
 
-
 def plot_electricField_simple(X, Y, E_x, E_y):
     plt.streamplot(X, Y, E_x, E_y)
     plt.xlabel(r'$\varepsilon$')
     plt.ylabel(r'$\delta$')
     plt.tick_params(labelsize=5)
-    plt.title(r'$E(\varepsilon, \delta)$ from $V_0(\varepsilon)=V_{0,a}(\varepsilon)$', fontsize=10)
     plt.show()
+
+def plot_f_V_E(x, y, X, Y, Z, Ex, Ey):
+    plt.subplot(311)
+    plt.plot(x, y)
+
+    plt.subplot(312)
+    plt.contourf(X, Y, Z)
+
+    plt.subplot(313)
+    plt.streamplot(X, Y, Ex, Ey)
+
+    plt.show()
+
+
 
 def contour_plot(X, Y, Z_a, Z_b, Z_c, Z_d):
     plt.suptitle(r'Relative potentials $V(\varepsilon, \delta)/V_c$', fontsize=20)
@@ -58,18 +71,6 @@ def contour_plot(X, Y, Z_a, Z_b, Z_c, Z_d):
     #plt.show()
     plt.savefig(datetime.now().strftime('Potentials.pdf'))
 
-'''
-def plot_BCs(x, y):
-    plt.plot(x, y, color='lime', label='Potential for BC 1-3')
-    plt.show()
-'''
-'''
-def plot_BC4(x, y, V0):
-    plt.plot(x, y, color='fuchsia', label=r'Numerical potential $V_{num}$')
-    plt.plot(x, V0, color='lime', linestyle='--', label='Analytic potential')
-    plt.title('Do I even use this?')
-    plt.show()
-'''
 
 def plot_error(N_list, error_list_a, error_list_b, error_list_c, error_list_d):
     plt.plot(N_list, error_list_a, color='r', label=r'$V_0(\varepsilon)=V_{0,a}(\varepsilon)$')

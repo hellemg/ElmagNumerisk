@@ -4,11 +4,8 @@ import scipy.integrate as integr
 
 class Potential:
     def __init__(self, func):
-        self.a = 0  # Start of integration-interval, in both potential and Fourier coefficients
-        self.b = 1  # End of integration-interval, in both potential and Fourier coefficients
-        self.tol = 10 ** (-6) #Error tolerance. Might not need for this part
         self.number_of_x = 101 #Number of points in x-array (I think)
-        self.x_array = np.linspace(self.a, self.b, self.number_of_x)
+        self.x_array = np.linspace(0, 1, self.number_of_x)
         self.y_array = self.x_array.copy()
         self.func = func(self.x_array)  # V0: numpy array, function of potential
 

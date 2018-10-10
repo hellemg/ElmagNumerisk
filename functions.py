@@ -1,6 +1,8 @@
 import numpy as np
 import scipy.integrate as integr
 
+
+"""
 a = 0  # Start of integration-interval, in both potential and Fourier coefficients
 b = 1  # End of integration-interval, in both potential and Fourier coefficients
 tol = 10 ** (-6)
@@ -55,7 +57,11 @@ def total_potential(x, y, V0, N, two_dim = False):
     for n in range(1, N):
         z += potential_n(n, x, y, V0)
     return z
+    
 
+def field(V_num):
+    return np.gradient(V_num)
+"""
 
 def get_errors(N_max):
     error_list_a = np.array([])
@@ -83,27 +89,3 @@ def get_errors(N_max):
 
         N_list = np.append(N_list, N)
     return N_list, error_list_a, error_list_b, error_list_c, error_list_d
-
-
-def field(V_num):
-    return np.gradient(V_num)
-
-
-'''
-    def boundary_potential(x, y, V0, N):
-        if x[10] == 0:
-            print('welcome to x=0')
-            V = total_potential(np.zeros(len(y)), y, V0, N)
-            plotting = "V(0, y), should be 0"
-        elif y[10] == 0:
-            V = total_potential(x, np.zeros(len(x)), V0, N)
-            plotting = "V(x, 0), should be 0"
-        elif x[10] == 1:
-            V = total_potential(np.ones(len(y)), y, V0, N)
-            plotting = "V(1, y), should be 0"
-        elif y[10] == 1:
-            V = total_potential(x, np.ones(len(x)), V0, N)
-            plotting = "V(x, 1), should be V0"
-        print('list: ', list, 'V: ', V, 'plotting: ', plotting)
-        return V, plotting
-'''

@@ -21,7 +21,7 @@ if __name__ == '__main__':
         from test import *
 
         unittest.main()
-
+    """
     elif MasterFlag == 'Boundary 4':
         N = 200  # Number of Fourier terms to approximate for
         y_list = np.linspace(0, 1, fun.X_es)  # y-values at which to evaluate the potential
@@ -86,3 +86,4 @@ if __name__ == '__main__':
         field_c = fun.field(Z_c)
         field_d = fun.field(Z_d)
         pl.plot_electricField(xx, yy, -field_a[0], -field_a[1], -field_b[0], -field_b[1], -field_c[0], -field_c[1], -field_d[0], -field_d[1])
+    """
