@@ -9,7 +9,7 @@ def plot_array(x, y):
     plt.show()
 
 def contour_plot_simple(X, Y, Z):
-    plt.contourf(X, Y, Z)
+    plt.contourf(X, Y, Z)#, cmap = 'plasma')
     plt.xlabel(r'$\varepsilon$')
     plt.ylabel(r'$\delta$')
     plt.tick_params(labelsize=5)
@@ -31,7 +31,7 @@ def plot_f_V_E(x, y, X, Y, Z, Ex, Ey):
 
     plt.subplot(313)
     plt.streamplot(X, Y, Ex, Ey)
-    #plt.quiver(X=X, Y=Y, U=Ex, V=Ey)
+    #plt.quiver(x, y, Ex, Ey)
     plt.show()
 
 

@@ -59,6 +59,7 @@ E_norm = np.sqrt(Ex**2 + Ey**2)
 #-----------------------------------------------------------------------------
 # Plot the triangulation, the potential iso-contours and the vector field
 #-----------------------------------------------------------------------------
+"""
 fig, ax = plt.subplots()
 ax.set_aspect('equal')
 # Enforce the margins, and enlarge them to give room for the vectors.
@@ -72,9 +73,26 @@ cmap = cm.get_cmap(name='hot', lut=None)
 #ax.tricontour(tri_refi, z_test_refi, levels=levels, cmap=cmap,
 #              linewidths=[2.0, 1.0, 1.0, 1.0])
 # Plots direction of the electrical vector field
-ax.quiver(triang.x, triang.y, Ex/E_norm, Ey/E_norm,
+
+ax.quiver(x, y, u, v,
           units='xy', scale=10., zorder=3, color='blue',
           width=0.007, headwidth=3., headlength=4.)
 
 ax.set_title('Gradient plot: an electrical dipole')
+"""
+x = triang.x
+y=triang.y
+u = Ex/E_norm
+v = Ey/E_norm
+#plt.quiver(x, y, np.asanyarray(u), np.asarray(v),
+#          units='xy', scale=10., zorder=3, color='blue',
+#          width=0.007, headwidth=3., headlength=4.)
+plt.plot(x, y)
 plt.show()
+plt.plot(u, v)
+plt.show()
+plt.plot(x, u)
+plt.show()
+print("shape of x and y: ", len(x), len(y))
+print("Shape of U and V: ", len(u), len(v))
+print("Type of x, y, u, v:", type(x), type(y), type(u), type(np.asarray(v)))

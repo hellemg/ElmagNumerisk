@@ -48,13 +48,8 @@ class TestElectricFields(unittest.TestCase):
         Ez_x = E.z_x.copy()
         Ez_y = E.z_y.copy()
 
-        pl.plot_f_V_E(x, y, X, Y, Z, Ez_x, Ez_y)
-        #pl.contour_plot_simple(V.x_array, V.y_array, V.z)
-        #pl.plot_electricField_simple(E.x_array, E.y_array, E.z_x, E.z_y)
+        print("shape of x, y, ex, ey, Z: ", len(x), len(y), len(Ez_x), len(Ez_y), len(Z))
 
-    def test_field(self):
-        V = Potential(lambda x: np.sin(3 * np.pi * x))
-        V.make_two_dim()
-        V.total_potential(100, True)
-        E = ElectricField(V)
+        #pl.plot_f_V_E(x, y, X, Y, Z, Ez_x, Ez_y)
+        pl.contour_plot_simple(V.x_array, V.y_array, V.z)
         #pl.plot_electricField_simple(E.x_array, E.y_array, E.z_x, E.z_y)
