@@ -3,18 +3,19 @@ import scipy.integrate as integr
 
 
 class Potential:
-    def __init__(self, func):
-        self.number_of_x = 101 #Number of points in x-array (I think)
+    def __init__(self, func, track_progress = True):
+        self.number_of_x = 101 #Number of points in x-array
         self.x_array = np.linspace(0, 1, self.number_of_x)
         self.y_array = self.x_array.copy()
-        self.func = func(self.x_array)  # V0: numpy array, function of potential
+        self.V0 = func(self.x_array)  # V0: numpy array, function of potential
+        self.track_progress = track_progress
 
     def fourier(self, n):
         """
         :param n: int, term in Fourier coeffs
         :return: Function in the Fourier coeffs (check out what I meant by this)
         """
-        return self.func * np.sin(n * np.pi * self.x_array)
+        return self.V0 * np.sin(n * np.pi * self.x_array)
 
 
     def simpson(self, f):

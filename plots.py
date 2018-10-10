@@ -31,7 +31,7 @@ def plot_f_V_E(x, y, X, Y, Z, Ex, Ey):
 
     plt.subplot(313)
     plt.streamplot(X, Y, Ex, Ey)
-
+    #plt.quiver(X=X, Y=Y, U=Ex, V=Ey)
     plt.show()
 
 

@@ -13,13 +13,13 @@ import matplotlib.pyplot as plt
 
 class TestElectricFields(unittest.TestCase):
 
-    def test_part_1(self):
-        print("**********Testing part 1***************")
+    def test_Image(self):
+        print("**********Testing Image***************")
         test_image = Image()
         self.assertTrue(isinstance(test_image.image_array, np.ndarray))
-        print(test_image.image_array.shape)
 
     def test_potential(self):
+        print("**********Testing Potential***************")
         def V0_choices(choice):
             return {
                 'a': lambda x : np.sin(3 * np.pi * x),
@@ -27,13 +27,16 @@ class TestElectricFields(unittest.TestCase):
                 'c': lambda x : np.heaviside(x - 1 / 2, 1) * np.heaviside(3 / 4 - x, 1),
                 'd': lambda x : np.ones_like(x) * 20
             }.get(choice, 1)  # 1 is default if x not found
+
         new_image = Image()
         new_image.extract_coordinates()
         V0 = new_image.interpolate_coordinates()
+        self.assertTrue(isinstance(V0, interp1d))
+
         V = Potential(V0)
         x = V.x_array.copy()
-        y = V.func.copy()
-        #pl.plot_array(V.x_array, V.func)
+        y = V.V0.copy()
+        #pl.plot_array(V.x_array, V.V0)
 
         V.make_two_dim()
         V.total_potential(100, True)
